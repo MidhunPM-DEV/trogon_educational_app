@@ -1,38 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:trogon_app/services/providers/selected_video_provider.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:trogon_app/services/providers/api_providers.dart';
+import 'package:trogon_app/views/pages/videopage/widgets/vimeo_player.dart';
+import 'package:trogon_app/views/pages/videopage/widgets/youtube_player_widget.dart';
 
 class VideoPage extends ConsumerWidget {
-  const VideoPage({super.key});
+  final int moduleId;
+
+  const VideoPage({super.key, required this.moduleId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final video = ref.watch(selectedVideoProvider);
+    final videos = ref.watch(videoProvider); // this returns a list
 
-    if (video == null) {
-      return const Scaffold(body: Center(child: Text("No video selected")));
-    }
+    return SafeArea(
+      child: Scaffold(
+        body: videos.when(
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (error, stackTrace) => Center(child: Text('Error: $error')),
+          data: (videos) {
+            final matchedVideo = videos.firstWhere(
+              (v) => v.id == moduleId,
+              orElse: () => showError("Video not found"),
+            );
 
-    if (video.videoType == 'YouTube') {
-      return Scaffold(
-        appBar: AppBar(title: Text(video.title)),
-        body: YoutubePlayer(
-          controller: YoutubePlayerController(
-            initialVideoId: YoutubePlayer.convertUrlToId(video.videoUrl)!,
-            flags: const YoutubePlayerFlags(autoPlay: true),
-          ),
-          showVideoProgressIndicator: true,
+            final url = matchedVideo.videoUrl;
+            final type = matchedVideo.videoType;
+
+            if (url == null || url.isEmpty || type == null || type.isEmpty) {
+              return const Center(child: Text("Video URL is missing"));
+            }
+
+            if (type.toLowerCase() == "youtube") {
+              return YoutubePlayerWidget(videoUrl: url);
+            } else if (type.toLowerCase() == "vimeo") {
+              return VimeoPlayerWidget(videoUrl: url);
+            } else {
+              return const Center(child: Text("Unsupported video type"));
+            }
+          },
         ),
-      );
-    } else {
-      return Scaffold(
-        appBar: AppBar(title: Text(video.title)),
-        body: WebViewWidget(
-            controller: WebViewController()
-              ..loadRequest(Uri.parse(video.videoUrl))),
-      );
-    }
+      ),
+    );
   }
+
+  showError(String s) {}
 }

@@ -15,10 +15,7 @@ class ModulesPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => context.go('/'),
         ),
         title: Text(
@@ -36,9 +33,7 @@ class ModulesPage extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 16,
-                ),
+                const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
@@ -54,42 +49,31 @@ class ModulesPage extends ConsumerWidget {
             ),
           ),
 
+          // Modules Data
           fetchmodules.when(
             loading: () => const SliverToBoxAdapter(
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
+              child: Center(child: CircularProgressIndicator()),
             ),
             error: (error, stackTrace) => SliverToBoxAdapter(
-              child: Center(
-                child: Text(error.toString()),
-              ),
+              child: Center(child: Text(error.toString())),
             ),
-            data: (modules) => fetchmodules.when(
-              loading: () => const SliverToBoxAdapter(
-                child: Center(child: CircularProgressIndicator()),
-              ),
-              error: (error, stackTrace) => SliverToBoxAdapter(
-                child: Center(child: Text(error.toString())),
-              ),
-              data: (modules) => SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final module = modules[index];
-
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
-                      child: InkWell(
-                        onTap: () {
-                          context.goNamed('video');
-                        },
-                        child: ModuleCardWidget(module: module),
-                      ),
-                    );
-                  },
-                  childCount: modules.length,
-                ),
+            data: (modules) => SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final module = modules[index];
+                  return Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: InkWell(
+                      onTap: () {
+                        context.goNamed('video',
+                            pathParameters: {'moduleId': module.id.toString()});
+                      },
+                      child: ModuleCardWidget(module: module),
+                    ),
+                  );
+                },
+                childCount: modules.length,
               ),
             ),
           ),

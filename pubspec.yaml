@@ -19,6 +19,7 @@ dependencies:
   youtube_player_flutter: ^9.1.1
   vimeo_player_flutter: ^0.1.0
   webview_flutter: ^4.10.0
+  flutter_hooks: ^0.21.2
 
 dev_dependencies:
   flutter_test:

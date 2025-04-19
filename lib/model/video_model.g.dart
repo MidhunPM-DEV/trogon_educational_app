@@ -8,11 +8,11 @@ part of 'video_model.dart';
 
 _$VideoModelImpl _$$VideoModelImplFromJson(Map<String, dynamic> json) =>
     _$VideoModelImpl(
-      id: (json['id'] as num).toInt(),
-      title: json['title'] as String,
-      description: json['description'] as String,
-      videoType: json['videoType'] as String,
-      videoUrl: json['videoUrl'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      videoUrl: json['video_url'] as String?,
+      videoType: json['video_type'] as String?,
     );
 
 Map<String, dynamic> _$$VideoModelImplToJson(_$VideoModelImpl instance) =>
@@ -20,6 +20,6 @@ Map<String, dynamic> _$$VideoModelImplToJson(_$VideoModelImpl instance) =>
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,
-      'videoType': instance.videoType,
-      'videoUrl': instance.videoUrl,
+      'video_url': instance.videoUrl,
+      'video_type': instance.videoType,
     };

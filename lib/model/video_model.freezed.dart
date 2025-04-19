@@ -20,11 +20,13 @@ VideoModel _$VideoModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$VideoModel {
-  int get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  String get videoType => throw _privateConstructorUsedError;
-  String get videoUrl => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'video_url')
+  String? get videoUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'video_type')
+  String? get videoType => throw _privateConstructorUsedError;
 
   /// Serializes this VideoModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,11 +45,11 @@ abstract class $VideoModelCopyWith<$Res> {
       _$VideoModelCopyWithImpl<$Res, VideoModel>;
   @useResult
   $Res call(
-      {int id,
-      String title,
-      String description,
-      String videoType,
-      String videoUrl});
+      {int? id,
+      String? title,
+      String? description,
+      @JsonKey(name: 'video_url') String? videoUrl,
+      @JsonKey(name: 'video_type') String? videoType});
 }
 
 /// @nodoc
@@ -65,33 +67,33 @@ class _$VideoModelCopyWithImpl<$Res, $Val extends VideoModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? description = null,
-    Object? videoType = null,
-    Object? videoUrl = null,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? videoUrl = freezed,
+    Object? videoType = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
+              as int?,
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
+              as String?,
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      videoType: null == videoType
-          ? _value.videoType
-          : videoType // ignore: cast_nullable_to_non_nullable
-              as String,
-      videoUrl: null == videoUrl
+              as String?,
+      videoUrl: freezed == videoUrl
           ? _value.videoUrl
           : videoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      videoType: freezed == videoType
+          ? _value.videoType
+          : videoType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -105,11 +107,11 @@ abstract class _$$VideoModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String title,
-      String description,
-      String videoType,
-      String videoUrl});
+      {int? id,
+      String? title,
+      String? description,
+      @JsonKey(name: 'video_url') String? videoUrl,
+      @JsonKey(name: 'video_type') String? videoType});
 }
 
 /// @nodoc
@@ -125,33 +127,33 @@ class __$$VideoModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? description = null,
-    Object? videoType = null,
-    Object? videoUrl = null,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? videoUrl = freezed,
+    Object? videoType = freezed,
   }) {
     return _then(_$VideoModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
+              as int?,
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
+              as String?,
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      videoType: null == videoType
-          ? _value.videoType
-          : videoType // ignore: cast_nullable_to_non_nullable
-              as String,
-      videoUrl: null == videoUrl
+              as String?,
+      videoUrl: freezed == videoUrl
           ? _value.videoUrl
           : videoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      videoType: freezed == videoType
+          ? _value.videoType
+          : videoType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -159,30 +161,32 @@ class __$$VideoModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$VideoModelImpl implements _VideoModel {
-  _$VideoModelImpl(
-      {required this.id,
-      required this.title,
-      required this.description,
-      required this.videoType,
-      required this.videoUrl});
+  const _$VideoModelImpl(
+      {this.id,
+      this.title,
+      this.description,
+      @JsonKey(name: 'video_url') this.videoUrl,
+      @JsonKey(name: 'video_type') this.videoType});
 
   factory _$VideoModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$VideoModelImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
-  final String title;
+  final String? title;
   @override
-  final String description;
+  final String? description;
   @override
-  final String videoType;
+  @JsonKey(name: 'video_url')
+  final String? videoUrl;
   @override
-  final String videoUrl;
+  @JsonKey(name: 'video_type')
+  final String? videoType;
 
   @override
   String toString() {
-    return 'VideoModel(id: $id, title: $title, description: $description, videoType: $videoType, videoUrl: $videoUrl)';
+    return 'VideoModel(id: $id, title: $title, description: $description, videoUrl: $videoUrl, videoType: $videoType)';
   }
 
   @override
@@ -194,16 +198,16 @@ class _$VideoModelImpl implements _VideoModel {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.videoType, videoType) ||
-                other.videoType == videoType) &&
             (identical(other.videoUrl, videoUrl) ||
-                other.videoUrl == videoUrl));
+                other.videoUrl == videoUrl) &&
+            (identical(other.videoType, videoType) ||
+                other.videoType == videoType));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, title, description, videoType, videoUrl);
+      Object.hash(runtimeType, id, title, description, videoUrl, videoType);
 
   /// Create a copy of VideoModel
   /// with the given fields replaced by the non-null parameter values.
@@ -222,26 +226,28 @@ class _$VideoModelImpl implements _VideoModel {
 }
 
 abstract class _VideoModel implements VideoModel {
-  factory _VideoModel(
-      {required final int id,
-      required final String title,
-      required final String description,
-      required final String videoType,
-      required final String videoUrl}) = _$VideoModelImpl;
+  const factory _VideoModel(
+      {final int? id,
+      final String? title,
+      final String? description,
+      @JsonKey(name: 'video_url') final String? videoUrl,
+      @JsonKey(name: 'video_type') final String? videoType}) = _$VideoModelImpl;
 
   factory _VideoModel.fromJson(Map<String, dynamic> json) =
       _$VideoModelImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
-  String get title;
+  String? get title;
   @override
-  String get description;
+  String? get description;
   @override
-  String get videoType;
+  @JsonKey(name: 'video_url')
+  String? get videoUrl;
   @override
-  String get videoUrl;
+  @JsonKey(name: 'video_type')
+  String? get videoType;
 
   /// Create a copy of VideoModel
   /// with the given fields replaced by the non-null parameter values.

@@ -22,9 +22,14 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(
+        path: '/videos/:moduleId',
         name: 'video',
-        path: '/video',
-        builder: (context, state) => const VideoPage(),
+        builder: (context, state) {
+          final moduleId = state.pathParameters['moduleId'];
+          return VideoPage(
+            moduleId: int.parse(moduleId!),
+          );
+        },
       ),
     ],
   );

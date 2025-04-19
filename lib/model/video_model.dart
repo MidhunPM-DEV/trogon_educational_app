@@ -5,12 +5,12 @@ part 'video_model.g.dart';
 
 @freezed
 class VideoModel with _$VideoModel {
-  factory VideoModel({
-    required int id,
-    required String title,
-    required String description,
-    required String videoType,
-    required String videoUrl,
+  const factory VideoModel({
+    int? id,
+    String? title,
+    String? description,
+    @JsonKey(name: 'video_url') String? videoUrl,
+    @JsonKey(name: 'video_type') String? videoType,
   }) = _VideoModel;
 
   factory VideoModel.fromJson(Map<String, dynamic> json) =>
