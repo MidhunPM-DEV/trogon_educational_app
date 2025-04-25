@@ -35,7 +35,7 @@ class SubjectPage extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8),
                       child: InkWell(
-                        onTap: () => context.goNamed('modules',
+                        onTap: () => context.pushNamed('modules',
                             pathParameters: {'title': subject.title}),
                         child: SubjectCardWidget(subject: subject),
                       ));

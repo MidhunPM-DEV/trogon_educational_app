@@ -66,7 +66,7 @@ class ModulesPage extends ConsumerWidget {
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: InkWell(
                       onTap: () {
-                        context.goNamed('video',
+                        context.pushNamed('video',
                             pathParameters: {'moduleId': module.id.toString()});
                       },
                       child: ModuleCardWidget(module: module),
